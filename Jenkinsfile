@@ -40,7 +40,6 @@ pipeline {
       }
       steps {
         container('maven') {
-
           // ensure we're not on a detached head
           sh "git checkout master"
           sh "git config --global credential.helper store"
@@ -63,6 +62,7 @@ pipeline {
       steps {
         container('maven') {
           dir('charts/fnb-configserver') {
+            sh "sed -i -e "s/tag:.*/tag: ${params.tag}" values.yaml"
             sh "jx step changelog --version v\$(cat ../../VERSION)"
 
             // release the helm chart
@@ -71,7 +71,6 @@ pipeline {
             // promote through all 'Auto' promotion Environments
             //  sh "jx promote -b --all-auto --timeout 1h --version \$(cat ../../VERSION)"
             sh "jx step helm apply --namespace default"
-            sh "echo 'sptag: ${params.tag}'"
           }
         }
       }
