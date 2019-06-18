@@ -7,7 +7,7 @@ pipeline {
   }
   environment {
     ORG = 'tuananhho'
-    APP_NAME = 'springtest'
+    APP_NAME = 'fnb-configserver'
     CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
     DOCKER_REGISTRY_ORG = 'tuananhho'
   }
