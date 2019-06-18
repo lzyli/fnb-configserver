@@ -20,7 +20,7 @@ pipeline {
         PREVIEW_VERSION = "0.0.0-SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER"
         PREVIEW_NAMESPACE = "$APP_NAME-$BRANCH_NAME".toLowerCase()
         HELM_RELEASE = "$PREVIEW_NAMESPACE".toLowerCase()
-        TAG = params.tag
+        // TAG = ${params.tag}
       }
       steps {
         container('maven') {
@@ -42,6 +42,7 @@ pipeline {
       steps {
         container('maven') {
           // ensure we're not on a detached head
+          sh "echo ${params.tag}"
           sh "git checkout master"
           sh "git config --global credential.helper store"
           sh "jx step git credentials"
