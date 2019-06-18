@@ -23,7 +23,7 @@ clean:
 	rm -rf ${NAME}*.tgz
 
 release: clean
-	helm dependency build
+	# helm dependency build
 	helm lint
 	helm init --client-only
 	helm package .
@@ -36,7 +36,7 @@ ifeq ($(OS),Darwin)
 	sed -i "" -e "s/tag:.*/tag: $(RELEASE_VERSION)/" values.yaml
 else ifeq ($(OS),Linux)
 	sed -i -e "s/version:.*/version: $(RELEASE_VERSION)/" Chart.yaml
-	sed -i -e "s|repository:.*|repository: hub.bizweb.vn/fnb-configserver|" values.yaml
+	sed -i -e "s|repository:.*|repository:  hub.bizweb.vn/fnb-configserver |" values.yaml
 	sed -i -e "s/tag:.*/tag: $(RELEASE_VERSION)/" values.yaml
 else
 	echo "platfrom $(OS) not supported to release from"
