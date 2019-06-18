@@ -3,8 +3,8 @@
 # Declare variables to be passed into your templates.
 replicaCount: 1
 image:
-  repository: "hub.bizweb.vn/fnb-configserver"
-  tag: dev
+  sprepository: "hub.bizweb.vn/fnb-configserver"
+  sptag: dev
   pullPolicy: IfNotPresent
 
 # define environment variables here as a map of key: value
