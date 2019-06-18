@@ -62,7 +62,8 @@ pipeline {
       steps {
         container('maven') {
           dir('charts/fnb-configserver') {
-            sh "sed -i -e "s/tag:.*/tag: ${params.tag}" values.yaml"
+            tag = {params.tag}
+            sh 'sed -i -e "s/sptag:.*/sptag: $(tag)" values.yaml'
             sh "jx step changelog --version v\$(cat ../../VERSION)"
 
             // release the helm chart
