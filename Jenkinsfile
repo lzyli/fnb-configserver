@@ -20,6 +20,7 @@ pipeline {
         PREVIEW_VERSION = "0.0.0-SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER"
         PREVIEW_NAMESPACE = "$APP_NAME-$BRANCH_NAME".toLowerCase()
         HELM_RELEASE = "$PREVIEW_NAMESPACE".toLowerCase()
+        TAG = params.tag
       }
       steps {
         container('maven') {
@@ -62,8 +63,8 @@ pipeline {
       steps {
         container('maven') {
           dir('charts/fnb-configserver') {
-            sh 'tag = ${params.tag}'
-            sh 'sed -i -e "s/sptag:.*/sptag: $(tag)" values.yaml'
+            // sh 'tag = ${params.tag}'
+            sh 'sed -i -e "s/sptag:.*/sptag: $(TAG)" values.yaml'
             sh "jx step changelog --version v\$(cat ../../VERSION)"
 
             // release the helm chart
