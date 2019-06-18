@@ -13,11 +13,11 @@ deploy:
   kubectl: {}
 profiles:
 - name: dev
-  build:
-    tagPolicy:
-      envTemplate:
-        template: '{{.DOCKER_REGISTRY}}/{{.IMAGE_NAME}}:{{.DIGEST_HEX}}'
-    local: {}
+  # build:
+  #   tagPolicy:
+  #     envTemplate:
+  #       template: '{{.DOCKER_REGISTRY}}/{{.IMAGE_NAME}}:{{.DIGEST_HEX}}'
+  #   local: {}
   deploy:
     helm:
       releases:
