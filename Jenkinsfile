@@ -45,7 +45,6 @@ pipeline {
           sh "git checkout master"
           sh "git config --global credential.helper store"
           sh "jx step git credentials"
-
           // so we can retrieve the version in later steps
           sh "echo \$(jx-release-version) > VERSION"
           // sh "mvn versions:set -DnewVersion=\$(cat VERSION)"
@@ -72,6 +71,7 @@ pipeline {
             // promote through all 'Auto' promotion Environments
             //  sh "jx promote -b --all-auto --timeout 1h --version \$(cat ../../VERSION)"
             sh "jx step helm apply --namespace default"
+            sh "echo 'sptag: '+params.tag"
           }
         }
       }
