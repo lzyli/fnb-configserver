@@ -4,7 +4,7 @@
 replicaCount: 1
 image:
   sprepository: "hub.bizweb.vn/fnb-configserver"
-  sptag: xzy
+  sptag: abc
   pullPolicy: IfNotPresent
 
 # define environment variables here as a map of key: value
