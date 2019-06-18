@@ -63,7 +63,7 @@ pipeline {
       steps {
         container('maven') {
           dir('charts/fnb-configserver') {
-            sh 'tag=${params.tag}'
+            sh "tag=${params.tag}"
             sh "sed -i -e 's/sptag:.*/sptag: \$(tag)' values.yaml"
             sh "jx step changelog --version v\$(cat ../../VERSION)"
 
