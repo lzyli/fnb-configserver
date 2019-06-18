@@ -63,7 +63,7 @@ pipeline {
       }
       steps {
         container('maven') {
-          dir('charts/springtest') {
+          dir('charts/fnb-configserver') {
             sh "jx step changelog --version v\$(cat ../../VERSION)"
 
             // release the helm chart
