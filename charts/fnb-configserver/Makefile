@@ -31,6 +31,7 @@ release: clean
 	rm -rf ${NAME}*.tgz%
 
 tag:
+
 ifeq ($(OS),Darwin)
 	sed -i "" -e "s/version:.*/version: $(RELEASE_VERSION)/" Chart.yaml
 	sed -i "" -e "s/tag:.*/tag: $(RELEASE_VERSION)/" values.yaml
