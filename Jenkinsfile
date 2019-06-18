@@ -43,7 +43,7 @@ pipeline {
         container('maven') {
           // ensure we're not on a detached head
           sh "tag=${params.tag}"
-          sh "echo tag"
+          sh "echo $tag"
           sh "git checkout master"
           sh "git config --global credential.helper store"
           sh "jx step git credentials"
@@ -65,8 +65,8 @@ pipeline {
       steps {
         container('maven') {
           dir('charts/fnb-configserver') {
-            // sh 'tag = ${params.tag}'
-            sh 'sed -i -e "s/sptag:.*/sptag: $(TAG)" values.yaml'
+            // sh 'tag=${params.tag}'
+            sh 'sed -i -e "s/sptag:.*/sptag: $(tag)" values.yaml'
             sh "jx step changelog --version v\$(cat ../../VERSION)"
 
             // release the helm chart
