@@ -42,7 +42,8 @@ pipeline {
       steps {
         container('maven') {
           // ensure we're not on a detached head
-          sh "echo ${params.tag}"
+          sh "tag=${params.tag}"
+          sh "echo tag"
           sh "git checkout master"
           sh "git config --global credential.helper store"
           sh "jx step git credentials"
