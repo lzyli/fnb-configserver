@@ -1,14 +1,14 @@
 apiVersion: skaffold/v1beta2
 kind: Config
-build:
-  artifacts:
-  - image: tuananhho/fnb-configserver
-    context: .
-    docker: {}
-  tagPolicy:
-    envTemplate:
-      template: '{{.DOCKER_REGISTRY}}/{{.IMAGE_NAME}}:{{.VERSION}}'
-  local: {}
+# build:
+#   artifacts:
+#   - image: tuananhho/fnb-configserver
+#     context: .
+#     docker: {}
+#   tagPolicy:
+#     envTemplate:
+#       template: '{{.DOCKER_REGISTRY}}/{{.IMAGE_NAME}}:{{.VERSION}}'
+#   local: {}
 deploy:
   kubectl: {}
 profiles:
